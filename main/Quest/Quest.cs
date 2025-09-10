@@ -1,2 +1,11 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Quest.cs file has been added");
+﻿public class Quest
+{
+    public string QuestTitle;
+    public string Description;
+
+    public Quest(string questTitle, string description)
+    {
+        QuestTitle = questTitle;
+        Description = description;
+    }
+}
