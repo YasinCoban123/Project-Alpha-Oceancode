@@ -26,7 +26,5 @@
         if (direction == "w") return LocationToWest;
 
         return null;
-
-        // Yasin go fuck yourself
     }
 }
