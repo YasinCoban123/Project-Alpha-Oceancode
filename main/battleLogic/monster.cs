@@ -1,16 +1,18 @@
 public class Monster
 {
-    public int ID;           
+    public int ID;
     public string Name;
     public int CurrentHitPoints;
+    public int MaxHitPoints;  // <-- add this
     public int MinimumDamage;
     public int MaximumDamage;
 
-    public Monster(int id, string name, int hp, int minDamage, int maxDamage)
+    public Monster(int id, string name, int maxHP, int minDamage, int maxDamage)
     {
         ID = id;
         Name = name;
-        CurrentHitPoints = hp;
+        MaxHitPoints = maxHP;
+        CurrentHitPoints = maxHP;
         MinimumDamage = minDamage;
         MaximumDamage = maxDamage;
     }

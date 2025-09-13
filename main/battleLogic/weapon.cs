@@ -1,8 +1,8 @@
 ﻿public class Weapon
 {
-    public int ID { get; }
-    public string Name { get; }
-    public int Damage { get; }
+    public int ID;
+    public string Name;
+    public int Damage;
 
     public Weapon(int id, string name, int damage)
     {

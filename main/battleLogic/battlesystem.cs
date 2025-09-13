@@ -2,19 +2,24 @@ using System;
 
 public class BattleSystem
 {
-    private Player player;
-    private Monster monster;
+    public Player player;
+    public Monster monster;
     private Random rng = new Random();
+
+    private int SpiderKills = 0;
+    private int SnakeKills = 0;
+    private int RatKills = 0;
 
     public BattleSystem(Player player, Monster monster)
     {
         this.player = player;
         this.monster = monster;
+        this.monster.CurrentHitPoints = this.monster.MaxHitPoints; // Reset monster HP
     }
 
     public void StartBattle()
     {
-        Console.WriteLine($"A wild {monster.Name} appears!");
+        Console.WriteLine($"\nA wild {monster.Name} appears!");
 
         while (player.Health > 0 && monster.CurrentHitPoints > 0)
         {
@@ -27,7 +32,7 @@ public class BattleSystem
 
             if (choice == "1")
             {
-                int playerDamage = 10;
+                int playerDamage = player.CurrentWeapon != null ? player.CurrentWeapon.Damage : 5;
                 monster.CurrentHitPoints -= playerDamage;
                 Console.WriteLine($"You hit the {monster.Name} for {playerDamage} damage!");
             }
@@ -49,8 +54,19 @@ public class BattleSystem
                     skillIndex >= 1 && skillIndex <= player.SkillCount)
                 {
                     Skill chosenSkill = player.Skills[skillIndex - 1];
-                    monster.CurrentHitPoints -= chosenSkill.Damage;
-                    Console.WriteLine($"You used {chosenSkill.Name} for {chosenSkill.Damage} damage!");
+
+                    // Healing skill executes differently
+                    if (chosenSkill.Name == "Healing")
+                    {
+                        chosenSkill.Execute(player); // Heals +5
+                        Console.WriteLine("You used Healing and restored 5 HP!");
+                        Console.WriteLine($"Your health: {player.Health}/{player.MaxHealth}");
+                    }
+                    else
+                    {
+                        monster.CurrentHitPoints -= chosenSkill.Damage;
+                        Console.WriteLine($"You used {chosenSkill.Name} for {chosenSkill.Damage} damage!");
+                    }
                 }
                 else
                 {
@@ -81,23 +97,41 @@ public class BattleSystem
             {
                 Console.WriteLine($"You defeated the {monster.Name}!");
 
-                // Give skill depending on monster ID
+                // Increment kill counters and reward skills (no direct HP increase)
                 if (monster.ID == World.MONSTER_ID_GIANT_SPIDER)
                 {
-                    Skill webStrike = new Skill("Web Strike", 8, "Shoot sticky web to slow the enemy");
-                    player.LearnSkill(webStrike);
+                    SpiderKills++;
+                    if (SpiderKills == 3)
+                    {
+                        Skill webStrike = new Skill("Web Strike", 6, "Shoot sticky web to slow enemies");
+                        player.LearnSkill(webStrike);
+                        Console.WriteLine("You learned Web Strike for defeating 3 spiders!");
+                    }
                 }
                 else if (monster.ID == World.MONSTER_ID_SNAKE)
                 {
-                    Skill venomShot = new Skill("Venom Shot", 10, "Shoot venom that poisons enemies");
-                    player.LearnSkill(venomShot);
+                    SnakeKills++;
+                    if (SnakeKills == 3)
+                    {
+                        Skill venomShot = new Skill("Venom Shot", 8, "Shoot venom that poisons enemies");
+                        player.LearnSkill(venomShot);
+                        Console.WriteLine("You learned Venom Shot for defeating 3 snakes!");
+                    }
+                }
+                else if (monster.ID == World.MONSTER_ID_RAT)
+                {
+                    RatKills++;
+                    if (RatKills == 3)
+                    {
+                        Skill quickStab = new Skill("Quick Stab", 3, "Fast stabbing attack");
+                        player.LearnSkill(quickStab);
+                        Console.WriteLine("You learned Quick Stab for defeating 3 rats!");
+                    }
                 }
             }
 
             if (player.Health <= 0)
-            {
                 Console.WriteLine("Game Over! You died.");
-            }
         }
     }
 }
