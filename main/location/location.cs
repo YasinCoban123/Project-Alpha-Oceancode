@@ -20,11 +20,60 @@
     {
         direction = direction.ToLower();
 
-        if (direction == "n") return LocationToNorth;
-        if (direction == "s") return LocationToSouth;
-        if (direction == "e") return LocationToEast;
-        if (direction == "w") return LocationToWest;
+        if (direction == "n")
+        {
+            return LocationToNorth;
+        }
+        if (direction == "s")
+        {
+            return LocationToSouth;
+        }
+        if (direction == "e")
+        {
+            return LocationToEast;
+        }
+        if (direction == "w")
+        {
+            return LocationToWest;
+        }
 
         return null;
+    }
+
+    public string GetAvailableDirections()
+    {
+        string exits = "";
+
+        if (LocationToNorth != null)
+        {
+            exits += "North (N) ";
+        }
+        if (LocationToSouth != null)
+        {
+            exits += "South (S) ";
+        }
+        if (LocationToEast != null)
+        {
+            exits += "East (E) ";
+        }
+        if (LocationToWest != null)
+        {
+            exits += "West (W) ";
+        }
+
+        if (exits == "")
+        {
+            exits = "No exits";
+        }
+
+        return exits;
+    }
+
+    public void ShowLocation()
+    {
+        string exits = GetAvailableDirections();
+        Console.WriteLine($"\nYou are at: {Name}");
+        Console.WriteLine(Description);
+        Console.WriteLine($"Exits: {exits}");
     }
 }
