@@ -13,7 +13,8 @@ class Program
             CurrentWeapon = World.WeaponByID(World.WEAPON_ID_RUSTY_SWORD)
         };
 
-        // Give player the healing skill at start
+        // Give player the healing skill at 
+        // start
         Skill healingSkill = new Skill("Healing", 0, "Restore 5 HP");
         player.LearnSkill(healingSkill);
 
