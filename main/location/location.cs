@@ -1,4 +1,6 @@
-﻿public class Location
+﻿﻿// See https://aka.ms/new-console-template for more information
+Console.WriteLine("Hello, World!");
+public class Location
 {
     public int ID;
     public string Name;
