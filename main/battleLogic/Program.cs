@@ -35,7 +35,6 @@ class Program
 
                 if (player.Health <= 0)
                 {
-                    Console.WriteLine("Game Over! You died.");
                     return;
                 }
             }

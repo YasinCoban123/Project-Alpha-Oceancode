@@ -111,7 +111,7 @@ public class BattleSystem
                     player.SpiderKills++;
                     if (player.SpiderKills == 3)
                     {
-                        Skill webStrike = new Skill("Web Strike", 6, "Shoot sticky web to slow enemies");
+                        Skill webStrike = new Skill("Web Strike", 8, "Shoot sticky web to slow enemies");
                         player.LearnSkill(webStrike);
                     }
                 }
@@ -120,7 +120,7 @@ public class BattleSystem
                     player.SnakeKills++;
                     if (player.SnakeKills == 3)
                     {
-                        Skill venomShot = new Skill("Venom Shot", 8, "Shoot venom that poisons enemies");
+                        Skill venomShot = new Skill("Venom Shot", 10, "Shoot venom that poisons enemies");
                         player.LearnSkill(venomShot);
                     }
                 }
@@ -129,7 +129,7 @@ public class BattleSystem
                     player.RatKills++;
                     if (player.RatKills == 3)
                     {
-                        Skill quickStab = new Skill("Quick Stab", 3, "Fast stabbing attack");
+                        Skill quickStab = new Skill("Quick Stab", 6, "Fast stabbing attack");
                         player.LearnSkill(quickStab);
                     }
                 }
