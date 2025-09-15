@@ -13,19 +13,20 @@ class Program
             CurrentWeapon = World.WeaponByID(World.WEAPON_ID_RUSTY_SWORD)
         };
 
-        Skill healingSkill = new Skill("Healing", 0, "Restore 5 HP", (p) => p.Heal(5));
+        // Give player the healing skill at start
+        Skill healingSkill = new Skill("Healing", 0, "Restore 5 HP");
         player.LearnSkill(healingSkill);
 
-        // Monster encounter order: Rat -> Spider -> Snake
+        // Monster encounter order: Rat → Spider → Snake
         int[] monsterOrder = {
             World.MONSTER_ID_RAT,
             World.MONSTER_ID_GIANT_SPIDER,
             World.MONSTER_ID_SNAKE
         };
 
+        // Fight 3 of each monster type
         foreach (int monsterId in monsterOrder)
         {
-            // Fight 3 of the same monster
             for (int i = 1; i <= 3; i++)
             {
                 Monster monster = World.MonsterByID(monsterId);
@@ -39,5 +40,16 @@ class Program
                 }
             }
         }
+
+        // Display all learned skills at the end
+        Console.WriteLine("\nPlayer's learned skills:");
+        for (int i = 0; i < player.SkillCount; i++)
+        {
+            Console.WriteLine($"- {player.Skills[i].Name} (Damage: {player.Skills[i].Damage})");
+        }
+
+        // Display current weapon
+        if (player.CurrentWeapon != null)
+            Console.WriteLine($"\nPlayer's weapon: {player.CurrentWeapon.Name} (Damage: {player.CurrentWeapon.Damage})");
     }
 }

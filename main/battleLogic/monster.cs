@@ -3,7 +3,7 @@ public class Monster
     public int ID;
     public string Name;
     public int CurrentHitPoints;
-    public int MaxHitPoints;  // <-- add this
+    public int MaxHitPoints;
     public int MinimumDamage;
     public int MaximumDamage;
 
