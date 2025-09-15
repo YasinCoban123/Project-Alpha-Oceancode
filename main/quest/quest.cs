@@ -4,7 +4,7 @@
     public string QuestTitle;
     public string Description;
     public bool IsCompleted;
- 
+
     public Quest(int id, string questTitle, string description)
     {
         ID = id;
@@ -12,24 +12,24 @@
         Description = description;
         IsCompleted = false;
     }
- 
+
     public void QuestStarted()
     {
         Console.WriteLine($"Quest started: {QuestTitle}");
         Console.WriteLine(Description);
     }
- 
+
     public void QuestCompleted()
     {
         IsCompleted = true;
         Console.WriteLine($"Quest completed: {QuestTitle}");
     }
- 
+
     public void FarmersFieldQuest()
     {
         bool questAccepted = false;
         bool firstAttempt = true;
- 
+
         while (questAccepted is false)
         {
             if (firstAttempt)
@@ -48,7 +48,7 @@
             }
             Console.WriteLine("Do you want to accept the quest? (yes/no)");
             string response = Console.ReadLine().ToLower();
- 
+
             if (response == "yes")
             {
                 questAccepted = true;
@@ -65,12 +65,12 @@
             }
         }
     }
- 
+
     public void AlchemistGardenQuest()
     {
         bool questAccepted = false;
         bool firstAttempt = true;
- 
+
         while (questAccepted is false)
         {
             if (firstAttempt)
@@ -86,10 +86,10 @@
                 Console.WriteLine("Alchemist: Still seeking the herb? The snakes remain, and so does my offer.");
                 Console.WriteLine("Alchemist: Three of them. Silent, deadly, and coiled beneath my roses.");
             }
- 
+
             Console.WriteLine("Do you want to accept the quest? (yes/no)");
             string response = Console.ReadLine().ToLower();
- 
+
             if (response == "yes")
             {
                 questAccepted = true;
@@ -106,12 +106,12 @@
             }
         }
     }
- 
+
     public void GuardSpiderQuest()
     {
         bool questAccepted = false;
         bool firstAttempt = true;
- 
+
         while (questAccepted is false)
         {
             if (firstAttempt)
@@ -128,10 +128,10 @@
                 Console.WriteLine("Guard: Waiting on those spider silks, boy.");
                 Console.WriteLine("Guard: Prove yourself capable — bring me three strands, and the gate will open.");
             }
- 
+
             Console.WriteLine("Do you want to accept the quest? (yes/no)");
             string response = Console.ReadLine().ToLower();
- 
+
             if (response == "yes")
             {
                 questAccepted = true;
@@ -150,5 +150,31 @@
             }
         }
     }
+
+public void FinalQuest(Location currentLocation)
+{
+    if (currentLocation.ID == World.LOCATION_ID_HOME &&
+        World.QuestByID(World.QUEST_ID_CLEAR_FARMERS_FIELD).IsCompleted &&
+        World.QuestByID(World.QUEST_ID_CLEAR_ALCHEMIST_GARDEN).IsCompleted &&
+        World.QuestByID(World.QUEST_ID_COLLECT_SPIDER_SILK).IsCompleted)
+    {
+        Console.WriteLine("Je kijkt naar de ingrediënten op tafel...");
+        Console.WriteLine("Stem in je hoofd: Ben je klaar om het medicijn in elkaar te maken?");
+        Console.WriteLine("Druk op ENTER om verder te gaan.");
+        Console.ReadLine();
+
+        Console.Clear();
+        Console.WriteLine("Je mengt de zeldzame kruiden, de spinnenzijde en de extracten uit de tuin.");
+        Console.WriteLine("De kamer vult zich met een warme gloed terwijl het brouwsel begint te borrelen.");
+        Console.WriteLine("Na uren wachten til je voorzichtig het flesje op.");
+        Console.WriteLine("Het medicijn, het levensreddende elixerm is eindelijk compleet.");
+        Console.WriteLine();
+        Console.WriteLine("Je moeder opent langzaam haar ogen en glimlacht zwakjes.");
+        Console.WriteLine("Ze fluistert: 'Dank je, mijn kind... je hebt me gered.'");
+        Console.WriteLine();
+        Console.WriteLine("EINDE VAN HET AVONTUUR");
+    }
+
 }
- 
+
+}
