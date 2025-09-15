@@ -64,7 +64,7 @@ public class Inventory
         }
         else
         {
-            // Always overwrite if new weapon is better
+            // Overwrite if new weapon is better
             if (newWeapon.Damage > existing.Damage)
             {
                 items.Remove(existing);
@@ -130,6 +130,7 @@ public class Inventory
         {
             Weapon selectedWeapon = weapons[choice - 1];
             Console.WriteLine($"Inspecting {selectedWeapon.Name}: Damage = {selectedWeapon.Damage}");
+            
         }
     }
 }
@@ -149,7 +150,6 @@ public static class World
     public static void PopulateWeapons()
     {
         Weapons.Add(new Weapon(WEAPON_ID_RUSTY_SWORD, "Rusty Sword", 5));
-        Weapons.Add(new Weapon(WEAPON_ID_RUSTY_SWORD, "Banana Sword", 10));
     }
 
     public static Weapon WeaponByID(int id)

@@ -14,23 +14,23 @@ public class RewardsSystem
     {
         switch (RewardType.ToLower())
         {
-            case "Frog eg":
-                _inventory.AddItem(new Item("Frog leg", 1));
+            case "Frog leg":
+                InventorySys.AddItem(new Item("Frog leg", 1));
                 Console.WriteLine("You received a Frog leg!");
                 break;
 
             case "Rusty Armor":
-                _inventory.AddItem(new Item("Rusty Armor", 1));
+                InventorySys.AddItem(new Item("Rusty Armor", 1));
                 Console.WriteLine("You received a Rusty Armor!");
                 break;
 
             case "Sturdy Sword":
-                _inventory.AddItem(new Weapon(World.WEAPON_ID_RUSTY_SWORD, "Sturdy Sword", 5));
+                InventorySys.AddItem(new Weapon(World.WEAPON_ID_RUSTY_SWORD, "Sturdy Sword", 5));
                 Console.WriteLine("You received a Sturdy Sword!");
                 break;
 
             case "Mace":
-                _inventory.AddItem(new Weapon(World.WEAPON_ID_CLUB, "Mace", 10));
+                InventorySys.AddItem(new Weapon(World.WEAPON_ID_CLUB, "Mace", 10));
                 Console.WriteLine("You received a Mace!");
                 break;
 
@@ -39,6 +39,7 @@ public class RewardsSystem
                 break;
         }
     }
+    
 
     public void GrantRandomReward()
     {
