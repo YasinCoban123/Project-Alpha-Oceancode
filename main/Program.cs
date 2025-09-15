@@ -17,7 +17,6 @@ class Program
         Skill healingSkill = new Skill("Healing", 0, "Restore 5 HP");
         player.LearnSkill(healingSkill);
 
-        // Monster encounter order: Rat → Spider → Snake
         int[] monsterOrder = {
             World.MONSTER_ID_RAT,
             World.MONSTER_ID_GIANT_SPIDER,
