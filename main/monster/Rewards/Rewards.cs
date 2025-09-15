@@ -40,7 +40,6 @@ public class RewardsSystem
         }
     }
 
-    // Optionally: Randomized reward system
     public void GrantRandomReward()
     {
         Random rand = new Random();
