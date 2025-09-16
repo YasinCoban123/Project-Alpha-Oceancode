@@ -21,11 +21,7 @@ public class Quest
         Console.WriteLine(Description);
     }
 
-<<<<<<< HEAD
     public void TriggerQuest(Player player)
-=======
-    public void QuestCompleted()
->>>>>>> 6d7bcde0b52fd0e4481fdee0faeee6aee89a5198
     {
         if (IsCompleted)
         {
@@ -57,11 +53,7 @@ public class Quest
         bool questAccepted = false;
         bool firstAttempt = true;
 
-<<<<<<< HEAD
         while (!questAccepted)
-=======
-        while (questAccepted is false)
->>>>>>> 6d7bcde0b52fd0e4481fdee0faeee6aee89a5198
         {
             if (firstAttempt)
             {
@@ -109,11 +101,7 @@ public class Quest
         bool questAccepted = false;
         bool firstAttempt = true;
 
-<<<<<<< HEAD
         while (!questAccepted)
-=======
-        while (questAccepted is false)
->>>>>>> 6d7bcde0b52fd0e4481fdee0faeee6aee89a5198
         {
             if (firstAttempt)
             {
@@ -160,11 +148,7 @@ public class Quest
         bool questAccepted = false;
         bool firstAttempt = true;
 
-<<<<<<< HEAD
         while (!questAccepted)
-=======
-        while (questAccepted is false)
->>>>>>> 6d7bcde0b52fd0e4481fdee0faeee6aee89a5198
         {
             if (firstAttempt)
             {
@@ -203,7 +187,6 @@ public class Quest
         }
     }
 
-<<<<<<< HEAD
     public void QuestCompleted(Player player)
     {
         if (IsCompleted) return;
@@ -227,6 +210,7 @@ public class Quest
         {
             Console.WriteLine("Guard: You’ve returned with spider silk!");
             player.Inventory.AddItem(new Item("Elixir Potion"));
+            player.LearnSkill(new Skill("Web Strike", 12, "Attack using spider silk.")); // skill reward
         }
 
         if (player.Inventory.HasAllQuestItems())
@@ -238,33 +222,29 @@ public class Quest
             Environment.Exit(0);
         }
     }
-}
-=======
-public void FinalQuest(Location currentLocation)
-{
-    if (currentLocation.ID == World.LOCATION_ID_HOME &&
-        World.QuestByID(World.QUEST_ID_CLEAR_FARMERS_FIELD).IsCompleted &&
-        World.QuestByID(World.QUEST_ID_CLEAR_ALCHEMIST_GARDEN).IsCompleted &&
-        World.QuestByID(World.QUEST_ID_COLLECT_SPIDER_SILK).IsCompleted)
+
+    public void FinalQuest(Location currentLocation)
     {
-        Console.WriteLine("Je kijkt naar de ingrediënten op tafel...");
-        Console.WriteLine("Stem in je hoofd: Ben je klaar om het medicijn in elkaar te maken?");
-        Console.WriteLine("Druk op ENTER om verder te gaan.");
-        Console.ReadLine();
+        if (currentLocation.ID == World.LOCATION_ID_HOME &&
+            World.QuestByID(World.QUEST_ID_CLEAR_FARMERS_FIELD).IsCompleted &&
+            World.QuestByID(World.QUEST_ID_CLEAR_ALCHEMIST_GARDEN).IsCompleted &&
+            World.QuestByID(World.QUEST_ID_COLLECT_SPIDER_SILK).IsCompleted)
+        {
+            Console.WriteLine("Je kijkt naar de ingrediënten op tafel...");
+            Console.WriteLine("Stem in je hoofd: Ben je klaar om het medicijn in elkaar te maken?");
+            Console.WriteLine("Druk op ENTER om verder te gaan.");
+            Console.ReadLine();
 
-        Console.Clear();
-        Console.WriteLine("Je mengt de zeldzame kruiden, de spinnenzijde en de extracten uit de tuin.");
-        Console.WriteLine("De kamer vult zich met een warme gloed terwijl het brouwsel begint te borrelen.");
-        Console.WriteLine("Na uren wachten til je voorzichtig het flesje op.");
-        Console.WriteLine("Het medicijn, het levensreddende elixerm is eindelijk compleet.");
-        Console.WriteLine();
-        Console.WriteLine("Je moeder opent langzaam haar ogen en glimlacht zwakjes.");
-        Console.WriteLine("Ze fluistert: 'Dank je, mijn kind... je hebt me gered.'");
-        Console.WriteLine();
-        Console.WriteLine("EINDE VAN HET AVONTUUR");
+            Console.Clear();
+            Console.WriteLine("Je mengt de zeldzame kruiden, de spinnenzijde en de extracten uit de tuin.");
+            Console.WriteLine("De kamer vult zich met een warme gloed terwijl het brouwsel begint te borrelen.");
+            Console.WriteLine("Na uren wachten til je voorzichtig het flesje op.");
+            Console.WriteLine("Het medicijn, het levensreddende elixir is eindelijk compleet.");
+            Console.WriteLine();
+            Console.WriteLine("Je moeder opent langzaam haar ogen en glimlacht zwakjes.");
+            Console.WriteLine("Ze fluistert: 'Dank je, mijn kind... je hebt me gered.'");
+            Console.WriteLine();
+            Console.WriteLine("EINDE VAN HET AVONTUUR");
+        }
     }
-
 }
-
-}
->>>>>>> 6d7bcde0b52fd0e4481fdee0faeee6aee89a5198
