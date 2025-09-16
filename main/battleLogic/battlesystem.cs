@@ -43,20 +43,17 @@ public class BattleSystem
 
                 Console.WriteLine("Choose a skill:");
                 for (int i = 0; i < player.SkillCount; i++)
-                {
-                    Console.WriteLine($"{i + 1}. {player.Skills[i].Name} (Damage: {player.Skills[i].Damage})");
-                }
+                    Console.WriteLine($"{i + 1}. {player.Skills[i].Name} (Damage/Effect: {player.Skills[i].Damage})");
 
                 if (int.TryParse(Console.ReadLine(), out int skillIndex) &&
                     skillIndex >= 1 && skillIndex <= player.SkillCount)
                 {
                     Skill chosenSkill = player.Skills[skillIndex - 1];
 
-                    if (chosenSkill.Name == "Healing")
+                    if (chosenSkill.Name.ToLower() == "healing")
                     {
-                        player.Health += 8;
-                        if (player.Health > player.MaxHealth) player.Health = player.MaxHealth;
-                        Console.WriteLine("You used Healing and restored 5 HP!");
+                        player.Heal(chosenSkill.Damage);
+                        Console.WriteLine($"You used Healing and restored {chosenSkill.Damage} HP!");
                     }
                     else
                     {
@@ -82,56 +79,39 @@ public class BattleSystem
                 continue;
             }
 
-            // Show player health after action
+            // Show health
             Console.WriteLine($"Your health: {player.Health}/{player.MaxHealth}");
             Console.WriteLine($"Monster health: {monster.CurrentHitPoints}/{monster.MaxHitPoints}");
 
-            // Monster attacks back if alive
             if (monster.CurrentHitPoints > 0)
             {
                 int monsterDamage = rng.Next(monster.MinimumDamage, monster.MaximumDamage + 1);
                 player.Health -= monsterDamage;
                 if (player.Health < 0) player.Health = 0;
                 Console.WriteLine($"The {monster.Name} hits you for {monsterDamage} damage!");
-                Console.WriteLine($"Your health: {player.Health}/{player.MaxHealth}");
-
-                if (player.Health <= 0)
-                {
-                    Console.WriteLine("Game Over! You died.");
-                    return;
-                }
             }
             else
             {
                 Console.WriteLine($"You defeated the {monster.Name}!");
 
-                // Increment kill counters and reward skills
-                if (monster.ID == World.MONSTER_ID_GIANT_SPIDER)
+                // Kill counters and quest completion
+                if (monster.ID == World.MONSTER_ID_RAT)
                 {
-                    player.SpiderKills++;
-                    if (player.SpiderKills == 3)
-                    {
-                        Skill webStrike = new Skill("Web Strike", 8, "Shoot sticky web to slow enemies");
-                        player.LearnSkill(webStrike);
-                    }
+                    player.RatKills++;
+                    if (player.RatKills >= 3)
+                        World.QuestByID(World.QUEST_ID_CLEAR_ALCHEMIST_GARDEN).QuestCompleted(player);
                 }
                 else if (monster.ID == World.MONSTER_ID_SNAKE)
                 {
                     player.SnakeKills++;
-                    if (player.SnakeKills == 3)
-                    {
-                        Skill venomShot = new Skill("Venom Shot", 10, "Shoot venom that poisons enemies");
-                        player.LearnSkill(venomShot);
-                    }
+                    if (player.SnakeKills >= 3)
+                        World.QuestByID(World.QUEST_ID_CLEAR_FARMERS_FIELD).QuestCompleted(player);
                 }
-                else if (monster.ID == World.MONSTER_ID_RAT)
+                else if (monster.ID == World.MONSTER_ID_GIANT_SPIDER)
                 {
-                    player.RatKills++;
-                    if (player.RatKills == 3)
-                    {
-                        Skill quickStab = new Skill("Quick Stab", 6, "Fast stabbing attack");
-                        player.LearnSkill(quickStab);
-                    }
+                    player.SpiderKills++;
+                    if (player.SpiderKills >= 3)
+                        World.QuestByID(World.QUEST_ID_COLLECT_SPIDER_SILK).QuestCompleted(player);
                 }
             }
         }

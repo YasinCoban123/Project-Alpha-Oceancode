@@ -3,17 +3,23 @@
     public int ID;
     public string Name;
     public string Description;
+    public Item ItemRequiredToEnter;
+    public Quest QuestAvailableHere;
+    public Monster MonsterLivingHere;
  
     public Location LocationToNorth;
     public Location LocationToSouth;
     public Location LocationToEast;
     public Location LocationToWest;
- 
-    public Location(int id, string name, string description)
+    public bool AreMonstersDefeated = false;
+
+    public Location(int id, string name, string description, Item itemRequiredToEnter, Quest questAvailableHere)
     {
         ID = id;
         Name = name;
         Description = description;
+        ItemRequiredToEnter = itemRequiredToEnter;
+        QuestAvailableHere = questAvailableHere;
     }
  
     public Location Move(string direction)

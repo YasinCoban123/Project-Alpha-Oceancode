@@ -1,18 +1,29 @@
-﻿public class Player
+﻿using System;
+
+public class Player
 {
     public string Name;
     public int Health;
     public int MaxHealth;
     public Weapon CurrentWeapon;
+    public Inventory Inventory = new Inventory();
 
     // Skills
-    public Skill[] Skills = new Skill[10];
+    public Skill[] Skills = new Skill[4];
     public int SkillCount = 0;
 
-    // Kill counters for monsters
+    // Kill counters
     public int SpiderKills = 0;
     public int SnakeKills = 0;
     public int RatKills = 0;
+
+    public Player()
+    {
+        Health = 25;
+        MaxHealth = 25;
+        // Starting Healing skill
+        LearnSkill(new Skill("Healing", 5, "Restore 5 HP."));
+    }
 
     public void LearnSkill(Skill skill)
     {
@@ -24,7 +35,6 @@
         }
     }
 
-    // Heal method for healing skill
     public void Heal(int amount)
     {
         Health += amount;
