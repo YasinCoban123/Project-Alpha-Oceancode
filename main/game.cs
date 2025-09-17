@@ -22,7 +22,9 @@ class Game
         while (true)
         {
             currentLocation.ShowLocation();
-
+        
+            Quest.FinalQuest(currentLocation);
+        
             if (currentLocation.QuestAvailableHere != null)
                 currentLocation.QuestAvailableHere.TriggerQuest(player);
 

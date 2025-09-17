@@ -223,7 +223,7 @@ public class Quest
         }
     }
 
-    public void FinalQuest(Location currentLocation)
+    public static void FinalQuest(Location currentLocation)
     {
         if (currentLocation.ID == World.LOCATION_ID_HOME &&
             World.QuestByID(World.QUEST_ID_CLEAR_FARMERS_FIELD).IsCompleted &&
@@ -245,6 +245,7 @@ public class Quest
             Console.WriteLine("Ze fluistert: 'Dank je, mijn kind... je hebt me gered.'");
             Console.WriteLine();
             Console.WriteLine("EINDE VAN HET AVONTUUR");
+            Environment.Exit(0);
         }
     }
 }
